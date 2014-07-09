@@ -30,4 +30,7 @@
             <one-to-many class="modelo.EmpleadoProyecto" />
         </set>
     </class>
+    <query name="getByNombre">
+        from Empleado e where e.nombre = :tuNombre
+    </query>
 </hibernate-mapping>

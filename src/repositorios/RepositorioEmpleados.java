@@ -6,7 +6,9 @@
 
 package repositorios;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import modelo.Empleado;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -16,49 +18,70 @@ import utilidades.HibernateUtil;
  *
  * @author luis
  */
-public class RepositorioEmpleados {
+public class RepositorioEmpleados extends BaseRepositorio{
     
     public  List<Empleado> get(){
         
-        Session sesion=HibernateUtil.getSessionFactory().openSession();
         
         Query consulta=sesion.createQuery("from Empleado");
         List<Empleado> lista=consulta.list();
         
-       // sesion.close();
         return lista;
         
     }
     public Empleado get(Integer id){
-        Session sesion=HibernateUtil.getSessionFactory().openSession();
         
         Empleado emple=(Empleado) sesion.get(Empleado.class, id);
         
-        //sesion.close();
         return emple;
     
     }
+    public List<Empleado> getBySalario(double salario){
+        
+        Query q=sesion.createQuery("from Empleado e where e.salario>"+salario);
+        List<Empleado> l=q.list();
+        return l;
     
+    
+    }
+    public List<Empleado> getByFecha(Date fecha){
+        
+        Query q=sesion.createQuery("from Empleado e where e.fechaAlta < :fa");
+        q.setDate("fa", fecha);
+        List<Empleado> l=q.list();
+        return l;
+    
+    
+    }
+    public List<Empleado> 
+        getByConsulta(String consulta,Map<String,Object> params){
+        
+           Query q=sesion.getNamedQuery(consulta);
+           
+           for (String parametro : params.keySet()) {
+            
+               q.setParameter(parametro, params.get(parametro));
+        }
+           
+           List<Empleado> lista=q.list();
+           return lista;
+        
+        }
     public Empleado add(Empleado p){
          
-        Session sesion=HibernateUtil.getSessionFactory().openSession();
-      sesion.beginTransaction();
+       sesion.beginTransaction();
          sesion.save(p);
        sesion.getTransaction().commit();
-       sesion.close();
        return p;
         
     }
     
     public void delete(Empleado p){
-     Session sesion=HibernateUtil.getSessionFactory().openSession();
      sesion.beginTransaction();
     sesion.delete(p);
      sesion.getTransaction().commit();
-     sesion.close();
-    }
+      }
     public void update(Empleado p){
-     Session sesion=HibernateUtil.getSessionFactory().openSession();
      sesion.beginTransaction();
         try {
             sesion.update(p);
@@ -66,7 +89,6 @@ public class RepositorioEmpleados {
             sesion.getTransaction().rollback();
         }
     sesion.getTransaction().commit();
-    sesion.close();
     }
     
     
