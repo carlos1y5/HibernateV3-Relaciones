@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-jul-2014 20:17:42 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="modelo.EmpleadoProyecto" table="empleado_proyecto" catalog="teide2014">
+        <composite-id name="id" class="modelo.EmpleadoProyectoId">
+            <key-property name="idEmpleado" type="int">
+                <column name="idEmpleado" />
+            </key-property>
+            <key-property name="idProyecto" type="int">
+                <column name="idProyecto" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="proyecto" class="modelo.Proyecto" update="false" insert="false" fetch="select">
+            <column name="idProyecto" not-null="true" />
+        </many-to-one>
+        <many-to-one name="empleado" class="modelo.Empleado" update="false" insert="false" fetch="select">
+            <column name="idEmpleado" not-null="true" />
+        </many-to-one>
+        <property name="horas" type="java.lang.Integer">
+            <column name="horas" />
+        </property>
+    </class>
+</hibernate-mapping>

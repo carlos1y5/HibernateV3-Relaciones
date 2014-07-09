@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-jul-2014 20:17:42 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="modelo.Empleado" table="empleado" catalog="teide2014">
+        <id name="idEmpleado" type="java.lang.Integer">
+            <column name="idEmpleado" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="puesto" class="modelo.Puesto" fetch="select">
+            <column name="idPuesto" not-null="true" />
+        </many-to-one>
+        <many-to-one name="departamento" class="modelo.Departamento" fetch="select">
+            <column name="idDepartamento" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="250" not-null="true" />
+        </property>
+        <property name="salario" type="double">
+            <column name="salario" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="fechaAlta" type="date">
+            <column name="fechaAlta" length="10" />
+        </property>
+        <set name="empleadoProyectos" table="empleado_proyecto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idEmpleado" not-null="true" />
+            </key>
+            <one-to-many class="modelo.EmpleadoProyecto" />
+        </set>
+    </class>
+</hibernate-mapping>
