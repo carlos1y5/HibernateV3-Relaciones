@@ -7,10 +7,11 @@
     <property name="hibernate.connection.url">jdbc:mysql://luisgilpruebas.cloudapp.net:3306/teide2014?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">teide2014</property>
     <property name="hibernate.connection.password">teide2014</property>
-    <mapping resource="modelo/Empleado.hbm.xml"/>
     <mapping resource="modelo/EmpleadoProyecto.hbm.xml"/>
     <mapping resource="modelo/Puesto.hbm.xml"/>
     <mapping resource="modelo/Departamento.hbm.xml"/>
+    <mapping resource="modelo/Idioma.hbm.xml"/>
+    <mapping resource="modelo/Empleado.hbm.xml"/>
     <mapping resource="modelo/Proyecto.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

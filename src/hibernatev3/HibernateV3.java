@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import modelo.Departamento;
 import modelo.Empleado;
+import modelo.EmpleadoProyecto;
+import modelo.Idioma;
 import modelo.Puesto;
 import repositorios.IRepositorio;
 import repositorios.Repositorio;
@@ -34,13 +36,29 @@ public class HibernateV3 {
        // List<Empleado> empleados=re.getByFecha(new Date());
         
         Map<String,Object> params=new HashMap<>();
-        params.put("tuNombre", "Eva Jimenez");
+        params.put("tuNombre", "Luis Gil");
         List<Empleado> empleados=re.getByConsulta("getByNombre", params);
         System.out.println("*************Todos los Empleados ******************");
         
         for (Empleado empleado : empleados) {
             System.out.println("Nombre:"+empleado.getNombre());
             System.out.println("Puesto:"+empleado.getPuesto().getNombre());
+            
+            System.out.println("*********Proyectos*********");
+            
+            for (Object object : empleado.getEmpleadoProyectos()) {
+                EmpleadoProyecto ep=(EmpleadoProyecto)object;
+                
+                System.out.println(ep.getProyecto().getNombre());
+                System.out.println(ep.getHoras()+" horas");
+                
+            }
+            
+            System.out.println("********Idiomas del empleado**************");
+            for (Idioma idioma : empleado.getIdiomas()) {
+                System.out.println(idioma.getNombre());
+            }
+        
         }
         
         

@@ -1,5 +1,5 @@
 package modelo;
-// Generated 08-jul-2014 20:17:42 by Hibernate Tools 3.6.0
+// Generated 10-jul-2014 19:43:41 by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -18,7 +18,8 @@ public class Empleado  implements java.io.Serializable {
      private String nombre;
      private double salario;
      private Date fechaAlta;
-     private Set empleadoProyectos = new HashSet(0);
+     private Set<Idioma> idiomas = new HashSet<Idioma>(0);
+     private Set<EmpleadoProyecto> empleadoProyectos = new HashSet<EmpleadoProyecto>(0);
 
     public Empleado() {
     }
@@ -29,12 +30,13 @@ public class Empleado  implements java.io.Serializable {
         this.nombre = nombre;
         this.salario = salario;
     }
-    public Empleado(Puesto puesto, Departamento departamento, String nombre, double salario, Date fechaAlta, Set empleadoProyectos) {
+    public Empleado(Puesto puesto, Departamento departamento, String nombre, double salario, Date fechaAlta, Set<Idioma> idiomas, Set<EmpleadoProyecto> empleadoProyectos) {
        this.puesto = puesto;
        this.departamento = departamento;
        this.nombre = nombre;
        this.salario = salario;
        this.fechaAlta = fechaAlta;
+       this.idiomas = idiomas;
        this.empleadoProyectos = empleadoProyectos;
     }
    
@@ -80,11 +82,18 @@ public class Empleado  implements java.io.Serializable {
     public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
-    public Set getEmpleadoProyectos() {
+    public Set<Idioma> getIdiomas() {
+        return this.idiomas;
+    }
+    
+    public void setIdiomas(Set<Idioma> idiomas) {
+        this.idiomas = idiomas;
+    }
+    public Set<EmpleadoProyecto> getEmpleadoProyectos() {
         return this.empleadoProyectos;
     }
     
-    public void setEmpleadoProyectos(Set empleadoProyectos) {
+    public void setEmpleadoProyectos(Set<EmpleadoProyecto> empleadoProyectos) {
         this.empleadoProyectos = empleadoProyectos;
     }
 

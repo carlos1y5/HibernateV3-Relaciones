@@ -1,5 +1,5 @@
 package modelo;
-// Generated 08-jul-2014 20:17:42 by Hibernate Tools 3.6.0
+// Generated 10-jul-2014 19:43:41 by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -14,7 +14,7 @@ public class Proyecto  implements java.io.Serializable {
      private Integer idProyecto;
      private String nombre;
      private String descripcion;
-     private Set empleadoProyectos = new HashSet(0);
+     private Set<EmpleadoProyecto> empleadoProyectos = new HashSet<EmpleadoProyecto>(0);
 
     public Proyecto() {
     }
@@ -23,7 +23,7 @@ public class Proyecto  implements java.io.Serializable {
     public Proyecto(String nombre) {
         this.nombre = nombre;
     }
-    public Proyecto(String nombre, String descripcion, Set empleadoProyectos) {
+    public Proyecto(String nombre, String descripcion, Set<EmpleadoProyecto> empleadoProyectos) {
        this.nombre = nombre;
        this.descripcion = descripcion;
        this.empleadoProyectos = empleadoProyectos;
@@ -50,11 +50,11 @@ public class Proyecto  implements java.io.Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Set getEmpleadoProyectos() {
+    public Set<EmpleadoProyecto> getEmpleadoProyectos() {
         return this.empleadoProyectos;
     }
     
-    public void setEmpleadoProyectos(Set empleadoProyectos) {
+    public void setEmpleadoProyectos(Set<EmpleadoProyecto> empleadoProyectos) {
         this.empleadoProyectos = empleadoProyectos;
     }
 

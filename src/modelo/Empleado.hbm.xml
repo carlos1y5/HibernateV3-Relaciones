@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08-jul-2014 20:17:42 by Hibernate Tools 3.6.0 -->
+<!-- Generated 10-jul-2014 19:43:41 by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="modelo.Empleado" table="empleado" catalog="teide2014">
         <id name="idEmpleado" type="java.lang.Integer">
@@ -23,6 +23,15 @@
         <property name="fechaAlta" type="date">
             <column name="fechaAlta" length="10" />
         </property>
+        <set name="idiomas" table="idioma_empleado" inverse="true" 
+             lazy="true" fetch="select">
+            <key>
+                <column name="idEmpleado" not-null="true" />
+            </key>
+            <many-to-many entity-name="modelo.Idioma">
+                <column name="idIdioma" not-null="true" />
+            </many-to-many>
+        </set>
         <set name="empleadoProyectos" table="empleado_proyecto" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idEmpleado" not-null="true" />
@@ -31,6 +40,6 @@
         </set>
     </class>
     <query name="getByNombre">
-        from Empleado e where e.nombre = :tuNombre
+        from Empleado e where e.nombre= :tuNombre
     </query>
 </hibernate-mapping>

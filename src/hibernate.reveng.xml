@@ -7,4 +7,7 @@
   <table-filter match-name="departamento"/>
   <table-filter match-name="Proyecto"/>
   <table-filter match-name="empleado_proyecto"/>
+  <table-filter match-name="idioma"/>
+  <table-filter match-name="idioma_empleado"/>
+  
 </hibernate-reverse-engineering>
